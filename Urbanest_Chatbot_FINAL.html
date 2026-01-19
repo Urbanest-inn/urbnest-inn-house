@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Urbanest Inn TB Simatupang – Virtual Assistant</title>
+<style>
+body { font-family: Arial; background:#ece5dd; }
+.chat { max-width:420px; margin:20px auto; background:#fff; border-radius:10px; overflow:hidden; }
+.header { background:#075e54; color:white; padding:10px; text-align:center; }
+.messages { padding:10px; height:420px; overflow-y:auto; }
+.bot { background:#dcf8c6; padding:8px; margin:6px; border-radius:8px; }
+.user { background:#fff; padding:8px; margin:6px; border-radius:8px; text-align:right; }
+.input { display:flex; border-top:1px solid #ccc; }
+.input input { flex:1; padding:10px; border:none; }
+.input button { padding:10px; background:#075e54; color:white; border:none; }
+</style>
+</head>
+<body>
+
+<div class="chat">
+  <div class="header">
+    <b>Urbanest Inn TB Simatupang – Virtual Assistant</b><br>
+    <small>Asisten Resmi Urbanest Inn TB Simatupang</small>
+  </div>
+  <div class="messages" id="messages"></div>
+  <div class="input">
+    <input type="text" id="input" placeholder="Ketik pesan...">
+    <button onclick="send()">Kirim</button>
+  </div>
+</div>
+
+<script>
+const messages = document.getElementById("messages");
+const inputBox = document.getElementById("input");
+
+const opening = `Halo 👋Terimakasih telah menghubungi Hotel Urbanest Inn TB Simatupang. Silakan ketik angka yang ingin di tanyakan<br>
+1️⃣ Alamat Urbanest inn house TB Simatupang<br>
+2️⃣ Fasilitas Hotel<br>
+3️⃣ Jam Operasional<br>
+4️⃣ Informasi Kamar<br>
+5️⃣ Cara Pemesanan<br>
+6️⃣ Kebijakan Pembatalan<br>
+7️⃣ Kontak Resepsionis`;
+
+function bot(text) {
+  const d = document.createElement("div");
+  d.className = "bot";
+  d.innerHTML = text;
+  messages.appendChild(d);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function user(text) {
+  const d = document.createElement("div");
+  d.className = "user";
+  d.innerText = text;
+  messages.appendChild(d);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function send() {
+  const t = inputBox.value.trim();
+  if (!t) return;
+  user(t);
+  inputBox.value = "";
+
+  let r = "";
+
+  switch(t) {
+    case "1":
+      r = "baik, berikut informasi yang anda tanyakan<br><br>📍 Alamat: Jl. Villa Jatipadang No.52, Jati Padang, Ps. Minggu, Kota Jakarta Selatan.<br>🗺️ Akses: Dekat dengan pusat bisnis TB Simatupang dan hanya beberapa menit dari Halte busway, jaklingko, dan stasiun KRL Tanjung Barat dan Pasar Minggu<br><br>Semoga informasi tersebut membantu. 😊 Apakah ada hal lain yang ingin Anda ketahui? (Ya/Tidak)";
+      break;
+    case "2":
+      r = "baik, berikut informasi yang anda tanyakan<br><br>🌐 Wi-Fi Gratis | 🏊 Kolam Renang | 🅿️ Parkir Gratis<br>🏋️ Pusat Kebugaran (Gym) | 🪴 Taman bermain anak<br>Rooftop Garden<br>Sampan Cafe<br>🍳 Sarapan & Layanan Kamar<br><br>Semoga informasi tersebut membantu. 😊 Apakah ada hal lain yang ingin Anda ketahui?(Ya/Tidak)";
+      break;
+    case "3":
+      r = "baik, berikut informasi yang anda tanyakan<br><br>🗝️ Check-in: Mulai pukul 14:00 WIB<br>🚪 Check-out: Maksimal pukul 12:00 WIB<br>🛎️ Layanan Resepsionis: Mulai dari pukul 07:00 hingga pukul 21:00 WIB<br>Lebih dari 21:00 proses check-in/check-out akan dibantu security<br><br>Semoga informasi tersebut membantu. Apakah ada hal lain yang ingin Anda ketahui? (Ya/Tidak)";
+      break;
+    case "4":
+      r = "baik, berikut informasi yang anda tanyakan<br><br>🛏️ Standard Room: Minimalis & modern (AC, TV, Wi-Fi, Kamar mandi dalam).<br>🛋️ Deluxe Room: Lebih luas dengan area kerja dan pilihan King/Twin bed.<br>🏠 Deluxe suite: Konsep Kamar mezzanine dengan pemandangan kota/kolam renang<br>✨ Executive Room: Konsep kamar dengan paduan sofa dan kulkas di dalamnya.<br>Executive suite: kamar terbesar dari tipe yang lainnya<br><br>Semoga informasi tersebut membantu. 😊 Apakah ada hal lain yang ingin Anda ketahui?(Ya/Tidak)";
+      break;
+    case "5":
+      r = "baik, berikut informasi yang anda tanyakan<br><br>💬 WhatsApp Langsung: Hubungi tim kami di 0811-150-128 untuk harga terbaik.<br>🌐 Online Travel Agent: Traveloka, Tiket.com, Agoda, atau Booking.com.<br>💳 Pembayaran: Transfer bank atau kartu kredit/debit saat kedatangan.<br><br>Semoga informasi tersebut membantu. 😊 Apakah ada hal lain yang ingin Anda ketahui? Atau Anda ingin kami berikan Rekomendasi Tempat Seru di sekitar hotel kami?(Ya/Tidak)";
+      break;
+    case "6":
+      r = "baik, berikut informasi yang anda tanyakan<br><br>⚠️ Mohon maaf berdasarkan kebijakan manajemen, untuk sewa pemesanan kamar tidak dapat dilakukan refund/reschedule.<br><br>Semoga informasi tersebut membantu. 😊 Apakah ada hal lain yang ingin Anda ketahui?(Ya/Tidak)";
+      break;
+    case "7":
+      r = "baik, berikut informasi yang anda tanyakan<br><br>📱 WhatsApp/Telepon: 0811-150-128 / 02122001964<br>⏰ Waktu Layanan: Setiap hari hingga pukul 21:00 WIB.<br><br>Semoga informasi tersebut membantu. 😊 Apakah ada hal lain yang ingin Anda ketahui?(Ya/Tidak)";
+      break;
+    default:
+      if (t.toLowerCase() === "ya") {
+        r = "informasi apa yang ingin adnda ketahui";
+      } else if (t.toLowerCase() === "tidak" || t.toLowerCase() === "terima kasih") {
+        r = "Baik, Terima kasih banyak sudah menghubungi Urbanest Inn TB Simatupang. 😊 Kami sangat menantikan kehadiran Kakak di hotel kami. Have a wonderful day! ✨";
+      } else {
+        r = opening;
+      }
+  }
+
+  setTimeout(() => bot(r), 300);
+}
+
+bot(opening);
+
+inputBox.addEventListener("keypress", function(e) {
+  if (e.key === "Enter") send();
+});
+</script>
+
+</body>
+</html>
