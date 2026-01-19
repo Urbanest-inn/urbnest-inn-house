@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Urbanest Inn House - Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #ece5dd; }
+    .chat-container { max-width: 400px; margin: 30px auto; background: #fff; border-radius: 10px; overflow: hidden; }
+    .header { background: #075e54; color: white; padding: 10px; text-align: center; }
+    .messages { padding: 10px; height: 400px; overflow-y: auto; }
+    .bot { background: #dcf8c6; margin: 5px; padding: 8px; border-radius: 5px; }
+    .user { background: #fff; margin: 5px; padding: 8px; border-radius: 5px; text-align: right; }
+    .input-box { display: flex; border-top: 1px solid #ccc; }
+    .input-box input { flex: 1; padding: 10px; border: none; }
+    .input-box button { padding: 10px; background: #075e54; color: white; border: none; }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="header">Urbanest Inn House - AI</div>
+  <div class="messages" id="messages"></div>
+  <div class="input-box">
+    <input type="text" id="userInput" placeholder="Ketik pesan...">
+    <button onclick="sendMessage()">Kirim</button>
+  </div>
+</div>
+
+<script>
+const messages = document.getElementById("messages");
+
+const menuText = `Halo 👋 Terimakasih telah menghubungi Hotel Urbanest Inn TB Simatupang.<br>
+Silakan ketik angka yang ingin ditanyakan:<br>
+1️⃣ Alamat Hotel<br>
+2️⃣ Fasilitas Hotel<br>
+3️⃣ Jam Operasional<br>
+4️⃣ Informasi Kamar<br>
+5️⃣ Cara Pemesanan<br>
+6️⃣ Kebijakan Pembatalan<br>
+7️⃣ Kontak Resepsionis`;
+
+function botMessage(text) {
+  const div = document.createElement("div");
+  div.className = "bot";
+  div.innerHTML = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function userMessage(text) {
+  const div = document.createElement("div");
+  div.className = "user";
+  div.innerText = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const text = input.value.trim();
+  if (!text) return;
+  userMessage(text);
+  input.value = "";
+
+  let reply = "";
+
+  switch(text) {
+    case "1":
+      reply = "📍 Alamat: Jl. Villa Jatipadang No.52, Jakarta Selatan.<br>Semoga membantu 😊 (Ya/Tidak)";
+      break;
+    case "2":
+      reply = "Fasilitas: Wi-Fi, Kolam Renang, Parkir, Gym, Rooftop Garden, Sampan Cafe.<br>Semoga membantu 😊 (Ya/Tidak)";
+      break;
+    case "3":
+      reply = "Check-in: 14.00 WIB<br>Check-out: 12.00 WIB<br>Resepsionis: 07.00–21.00 WIB<br>Semoga membantu 😊 (Ya/Tidak)";
+      break;
+    case "4":
+      reply = "Tipe kamar: Standard, Deluxe, Deluxe Suite, Executive, Executive Suite.<br>Semoga membantu 😊 (Ya/Tidak)";
+      break;
+    case "5":
+      reply = "Booking via WhatsApp: 0811-150-128 atau OTA seperti Traveloka.<br>Semoga membantu 😊 (Ya/Tidak)";
+      break;
+    case "6":
+      reply = "Kebijakan: Tidak dapat refund/reschedule.<br>Semoga membantu 😊 (Ya/Tidak)";
+      break;
+    case "7":
+      reply = "Kontak: 0811-150-128 / 02122001964<br>Semoga membantu 😊 (Ya/Tidak)";
+      break;
+    default:
+      if (text.toLowerCase() === "tidak" || text.toLowerCase() === "terima kasih") {
+        reply = "Terima kasih telah menghubungi Urbanest Inn TB Simatupang 😊";
+      } else {
+        reply = menuText;
+      }
+  }
+
+  setTimeout(() => botMessage(reply), 500);
+}
+
+botMessage(menuText);
+</script>
+
+</body>
+</html>
